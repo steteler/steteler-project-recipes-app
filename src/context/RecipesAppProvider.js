@@ -12,6 +12,10 @@ export default function RecipesAppProvider({ children }) {
   const [filterButtons, setFilterButtons] = useState([]);
   const [inProgress, setInProgress] = useState({ cocktails: {}, meals: {} });
   const [favorites, setFavorites] = useStoredState('favoriteRecipes', []);
+  // const [done, setDone] = useStoredState('doneRecipes', []);
+  // const [dateDone, setDateDone] = useStoredState('doneDates', []);
+  const [done, setDone] = useState([]);
+  const [dateDone, setDateDone] = useState([]);
 
   const [savedFilters, setSavedFilters] = useState({
     filterBySearch: '',
@@ -59,6 +63,10 @@ export default function RecipesAppProvider({ children }) {
     setInProgress,
     favorites,
     setFavorites,
+    done,
+    setDone,
+    dateDone,
+    setDateDone,
   };
 
   return (

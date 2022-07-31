@@ -72,7 +72,7 @@ function RecipeDetailsButtons({ recipe }) {
 
 RecipeDetailsButtons.propTypes = {
   recipe: PropTypes.shape({
-    idMeal: PropTypes.number,
+    idMeal: PropTypes.string,
     strMeal: PropTypes.string,
     strCategory: PropTypes.string,
     strArea: PropTypes.string,
