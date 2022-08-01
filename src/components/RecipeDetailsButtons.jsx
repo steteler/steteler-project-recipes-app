@@ -23,7 +23,6 @@ function RecipeDetailsButtons({ recipe }) {
   };
 
   const isFavorite = favorites.some((fr) => fr.id === params.id);
-  console.log('isfavorite:', isFavorite);
 
   const includeFavoriteRecipe = () => {
     const isFood = pathname === `/foods/${params.id}`;

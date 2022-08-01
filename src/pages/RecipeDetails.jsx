@@ -36,16 +36,15 @@ function RecipeDetails() {
   }, []);
 
   useEffect(() => {
+    const max = 6;
     if (recommendationDrinks.length || recommendationFood.length) {
       if (pathname === `/foods/${params.id}`) {
-        const max = 6;
         setFilterRecommendation(recommendationDrinks.filter((_, index) => index < max));
       } else {
-        const max = 6;
         setFilterRecommendation(recommendationFood.filter((_, index) => index < max));
       }
     }
-  }, []);
+  }, [recommendationDrinks, recommendationFood]);
 
   function filterIngredient() {
     const ingredients = arrayIngredientsMeasure.ingredients.map((ingredient) => (
@@ -136,10 +135,7 @@ function RecipeDetails() {
                   ))
                 }
               </div>
-              <p
-                data-testid="instructions"
-                className="detailsInstructions"
-              >
+              <p data-testid="instructions" className="detailsInstructions">
                 { recipe.strInstructions }
               </p>
               { pathname === `/foods/${params.id}`
@@ -187,7 +183,10 @@ function RecipeDetails() {
                 className="start-recipe-btn"
                 onClick={ startRecipe }
               >
-                { inProgress.length ? 'Start Recipe' : 'Continue Recipe' }
+                {/* { inProgress.length ? 'Start Recipe' : 'Continue Recipe' } */}
+                { Object.entries(inProgress)
+                  .includes(recipe.idMeal) || Object.entries(inProgress)
+                  .includes(recipe.idDrink) ? 'Continue Recipe' : 'Start Recipe' }
               </button>
             </div>
           ) : (
