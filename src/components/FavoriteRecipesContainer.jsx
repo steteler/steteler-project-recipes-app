@@ -16,6 +16,7 @@ export default function FavoriteRecipeContainer({ recipe, index }) {
     alcoholicOrNot,
     category,
   } = recipe;
+  console.log('recipe:', recipe);
 
   const { favorites, setFavorites } = useContext(recipesAppContext);
 
@@ -53,9 +54,9 @@ export default function FavoriteRecipeContainer({ recipe, index }) {
         {' '}
         {category}
       </p>
-      <p data-testid={ `${index}-horizontal-done-date"` }>
+      {/* <p data-testid={ `${index}-horizontal-done-date"` }>
         { showDate }
-      </p>
+      </p> */}
       <button
         type="button"
         onClick={ () => handleShare(type === 'food' ? `/foods/${id}` : `/drinks/${id}`) }

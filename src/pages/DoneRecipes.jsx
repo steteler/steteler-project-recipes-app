@@ -6,13 +6,14 @@ import '../css/DoneRecipes.css';
 
 function DoneRecipes() {
   const { done } = React.useContext(recipesAppContext);
+  console.log('done', done);
+  
+  const [recipes, setRecipes] = React.useState([]);
 
-  // const [recipes, setRecipes] = React.useState([]);
-
-  // React.useEffect(() => {
-  //   console.log('done', done);
-  //   setRecipes(done);
-  // }, [done]);
+  React.useEffect(() => {
+    console.log('done', done);
+    setRecipes(done);
+  }, [done]);
 
   const handleRadio = ({ target: { id } }) => {
     if (id === 'foods') {

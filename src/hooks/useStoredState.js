@@ -13,6 +13,6 @@ export default function useStoredState(storageKey, fallbackValue) {
     localStorage.removeItem(storageKey);
     localStorage.setItem(storageKey, JSON.stringify(data));
   }, [storageKey, data]);
-
+  console.log('data', data);
   return [data, setData];
 }

@@ -15,6 +15,7 @@ export default function DoneRecipeContainer({ recipe, index }) {
     nationality,
     alcoholicOrNot,
     category,
+    tags,
   } = recipe;
 
   useEffect(() => {
@@ -58,9 +59,19 @@ export default function DoneRecipeContainer({ recipe, index }) {
         {' '}
         {category}
       </p>
-      <p data-testid={ `data-testid="${index}-horizontal-done-date` }>
+      <p data-testid={ `${index}-horizontal-done-date` }>
         { dateDone }
       </p>
+      <ul>
+        { tags.map((tag, indexTag) => (
+          <li
+            key={ indexTag }
+            data-testid={ `${index}-${tag}-horizontal-tag` }
+          >
+            { tag }
+          </li>
+        ))}
+      </ul>
       <button
         type="button"
         onClick={ () => handleShare(type === 'food' ? `/foods/${id}` : `/drinks/${id}`) }
