@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import '../css/RecipeInProgress.css';
@@ -7,6 +7,7 @@ import arrayIngredientsMeasure from '../services/arrayIngredientsMeasure';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
+import recipesAppContext from '../context/RecipesAppContext';
 
 export default function RecipeInProgress() {
   const [appearLink, setAppearLink] = useState(false);
@@ -17,6 +18,8 @@ export default function RecipeInProgress() {
   const { location: { pathname } } = history;
   const [heart, setHeart] = useState(true);
   const id = useParams();
+
+  const { setDateDone, setDone } = useContext(recipesAppContext);
 
   useEffect(() => {
     const storeRecipe = async () => {
@@ -95,6 +98,18 @@ export default function RecipeInProgress() {
   // console.log('medidas', recipeMeasure);
   // console.log(recipe);
   // console.log('ingredientes', recipeIngredient);
+
+  const getDate = () => {
+    const current = new Date();
+    const date = (
+      `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`
+    );
+    console.log('date', date);
+    setDateDone(date);
+    setDone(recipe);
+    history.push('/done-recipes');
+  };
+
   return (
     <div>
       {
@@ -162,7 +177,13 @@ export default function RecipeInProgress() {
                   data-testid="favorite-btn"
                 />
               </button>
-              <button type="button" data-testid="finish-recipe-btn">Finish Recipe</button>
+              <button
+                type="button"
+                data-testid="finish-recipe-btn"
+                onClick={ getDate }
+              >
+                Finish Recipe
+              </button>
             </div>
           ) : (
             <p>...</p>

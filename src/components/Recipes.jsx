@@ -32,7 +32,9 @@ export default function Recipes({ filteredRecipe, id, name, thumb }) {
               </div>
             </Link>
           ))
-        ) : <Loading />
+        ) : (
+          <Loading />
+        )
       }
     </main>
   );

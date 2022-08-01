@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 import favoriteIcon from '../images/blackHeartIcon.svg';
 import recipesAppContext from '../context/RecipesAppContext';
 
-export default function FavoriteRecipeContainer({ recipe, index }) {
+export default function DoneRecipeContainer({ recipe, index }) {
   const {
     id,
     image,
@@ -15,10 +15,14 @@ export default function FavoriteRecipeContainer({ recipe, index }) {
     nationality,
     alcoholicOrNot,
     category,
+    tags,
   } = recipe;
-  console.log('recipe:', recipe);
 
-  const { favorites, setFavorites } = useContext(recipesAppContext);
+  useEffect(() => {
+    console.log('aaaaaaaaaaaaaa');
+  }, []);
+
+  const { done, setDone, dateDone } = useContext(recipesAppContext);
 
   const [isCopied, setIsCopied] = useState(false);
 
@@ -27,15 +31,16 @@ export default function FavoriteRecipeContainer({ recipe, index }) {
     setIsCopied(true);
   };
 
-  const handleFavorite = ({ target }) => {
-    const newLocalStorageValue = (
-      favorites.filter((recipes) => recipes.id !== target.id)
+  const handleDone = ({ target }) => {
+    const newLocalStorageValueDone = (
+      done.filter((recipes) => recipes.id !== target.id)
     );
-    setFavorites(newLocalStorageValue);
+    setDone(newLocalStorageValueDone);
   };
 
   return (
     <div>
+      <h1>Teste</h1>
       <Link to={ type === 'food' ? `/foods/${id}` : `/drinks/${id}` }>
         <img
           src={ image }
@@ -54,9 +59,19 @@ export default function FavoriteRecipeContainer({ recipe, index }) {
         {' '}
         {category}
       </p>
-      {/* <p data-testid={ `${index}-horizontal-done-date"` }>
-        { showDate }
-      </p> */}
+      <p data-testid={ `${index}-horizontal-done-date` }>
+        { dateDone }
+      </p>
+      <ul>
+        { tags.map((tag, indexTag) => (
+          <li
+            key={ indexTag }
+            data-testid={ `${index}-${tag}-horizontal-tag` }
+          >
+            { tag }
+          </li>
+        ))}
+      </ul>
       <button
         type="button"
         onClick={ () => handleShare(type === 'food' ? `/foods/${id}` : `/drinks/${id}`) }
@@ -67,7 +82,7 @@ export default function FavoriteRecipeContainer({ recipe, index }) {
           alt="share"
         />
       </button>
-      <button type="button" onClick={ handleFavorite }>
+      <button type="button" onClick={ handleDone }>
         <img
           src={ favoriteIcon }
           data-testid={ `${index}-horizontal-favorite-btn` }
@@ -82,7 +97,7 @@ export default function FavoriteRecipeContainer({ recipe, index }) {
   );
 }
 
-FavoriteRecipeContainer.propTypes = {
+DoneRecipeContainer.propTypes = {
   recipe: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
 };
