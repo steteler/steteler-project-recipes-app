@@ -1,132 +1,86 @@
 import App from '../App';
-import { cleanup, screen, waitForElementToBeRemoved, debug } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import renderWithRouter from '../utils/renderWithRouter';
 import userEvent from '@testing-library/user-event';
-import { wait } from '@testing-library/user-event/dist/utils';
+// import { wait } from '@testing-library/user-event/dist/utils';
 
-async function waitForApiResponse() {
-  const loadingElement = await screen
-    .findByTestId("loading-image", undefined)
-    .catch(() => null);
+const mockFavoriteRecipes = [
+  {
+    id: "52771",
+    type: "food",
+    nationality: "Italian",
+    category: "Vegetarian",
+    alcoholicOrNot: "",
+    name: "Spicy Arrabiata Penne",
+    image: "https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg",
+  },
+  {
+    id: "178319",
+    type: "drink",
+    nationality: "",
+    category: "Cocktail",
+    alcoholicOrNot: "Alcoholic",
+    name: "Aquamarine",
+    image:
+      "https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg",
+  },
+];
 
-  if (!loadingElement) {
-    return;
-  }
-
-  return waitForElementToBeRemoved(() => screen.queryByTestId('loading-image'));
-}
-
-describe('Testa a página Favorite Recipes', () => {
-  afterEach(cleanup);
-  
-  test('1. Se a página de favoritos exibe o item inserido', async () => {
-    const { history, debug } = renderWithRouter(<App />);
-    history.push('/foods');
-
-    await waitForApiResponse();
-    // await waitForElementToBeRemoved(() => screen.queryByTestId("loading-image"));
-
-    const bigMac = await screen.findByText(/big mac/i);
-    expect(bigMac).toBeInTheDocument();
-
-    userEvent.click(bigMac);
-
-    expect(history.location.pathname).toBe('/foods/53013');
-    
-    const favoriteBtn = await screen.findByAltText('favorite');
-    expect(favoriteBtn).toBeInTheDocument();
-
-    userEvent.click(favoriteBtn);
-
-    history.push('/profile');
-
-    expect(history.location.pathname).toBe('/profile');
-    const favoriteRecipes = await screen.findByTestId('profile-favorite-btn');
-    expect(favoriteRecipes).toBeInTheDocument();
-
-    userEvent.click(favoriteRecipes);
-
-    const bigMacLink = await screen.findByText(/big mac/i);
-    expect(bigMacLink).toBeInTheDocument();
+describe("Testa a página Favorite Recipes", () => {
+  beforeEach(() => {
+    localStorage.setItem(
+      "favoriteRecipes",
+      JSON.stringify(mockFavoriteRecipes)
+    );
   });
-  
-  test('2. Se a página exibe os radio buttons e se eles filtram corretamente os itens na página', async () => {
-    cleanup;
+
+  afterEach(() => {
+    localStorage.removeItem("favoriteRecipes");
+  });
+
+  test("1. Se a página de favoritos exibe o item inserido", async () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/foods');
+    history.push("/favorite-recipes");
 
-    // await waitForApiResponse();
-    // await waitForElementToBeRemoved(() => screen.queryByTestId('loading-image'));
+    const foodLink = await screen.findByText(/Spicy Arrabiata Penne/i);
+    expect(foodLink).toBeInTheDocument();
 
-    const bigMac = await screen.findByText(/Big mac/i);
-    expect(bigMac).toBeInTheDocument();
-
-    userEvent.click(bigMac);
-    const favoriteBtn = await screen.findByTestId('favorite-btn');
-    expect(favoriteBtn).toBeInTheDocument();
-
-    userEvent.click(favoriteBtn);
-
-    history.push('/foods');
-
-    // await waitForApiResponse();
-    // await waitForElementToBeRemoved(() => screen.queryByTestId("loading-image"));
-
-    const tamiya = await screen.findByText(/Tamiya/i);
-    expect(tamiya).toBeInTheDocument();
-
-    userEvent.click(tamiya);
-
-    const favoriteBtn2 = await screen.findByTestId('favorite-btn');
-    expect(favoriteBtn2).toBeInTheDocument();
-
-    userEvent.click(favoriteBtn);
-
-    history.push('/drinks');
-
-    await waitForApiResponse();
-    await waitForElementToBeRemoved(() => screen.queryByTestId("loading-image"));
-    
-    const kir = await screen.findByText(/Kir/i);
-    expect(kir).toBeInTheDocument();
-
-    // userEvent.click(kir);
-
-    // // await waitForApiResponse();
-    // await waitForElementToBeRemoved(() => screen.queryByTestId("loading-image"));
-
-    // expect(history.location.pathname).toBe('/drinks/17203');
-    // const favoriteBtn3 = await screen.findByTestId('favorite-btn');
-    // expect(favoriteBtn3).toBeInTheDocument();
-
-    // userEvent.click(favoriteBtn);
-
-    // history.push('/favorite-recipes');
-
-    // const radioButtonAll = await screen.findByLabelText(/all/i);
-    // expect(radioButtonAll).toBeInTheDocument();
-
-    // const radioButtonFoods = await screen.findByLabelText(/foods/i);
-    // expect(radioButtonFoods).toBeInTheDocument();
-    
-    // const radioButtonDrinks = await screen.findByLabelText(/drinks/i);
-    // expect(radioButtonDrinks).toBeInTheDocument();
-    
-    // userEvent.click(radioButtonFoods);
-    // expect(radioButtonFoods).toBeChecked();
-
-    // const bigMac2 = await screen.findByText(/Big mac/i);
-    // expect(bigMac2).toBeInTheDocument();
-
-    // const tamiya2 = await screen.findByText(/tamiya/i);
-    // expect(tamiya2).toBeInTheDocument();
-
-    // const kir2 = screen.queryByText(/kir/i);
-    // expect(kir2).not.toBeInTheDocument();
-
+    const drinkLink = await screen.findByText(/Aquamarine/i);
+    expect(drinkLink).toBeInTheDocument();
   });
   
+  test("2. Se a página exibe os radio buttons e se eles filtram corretamente os itens na página", async () => {
+    const { history } = renderWithRouter(<App />);
+    history.push("/favorite-recipes");
 
-  
+    await waitFor(() => {
+      const radioButtonFoods = screen.queryByTestId("filter-by-food-btn");
+      expect(radioButtonFoods).toBeInTheDocument();
+
+      userEvent.click(radioButtonFoods);
+
+      expect(radioButtonFoods).toBeChecked();
+      expect(screen.queryByText(/Spicy Arrabiata Penne/i)).toBeInTheDocument();
+      expect(screen.queryByText(/Aquamarine/i)).not.toBeInTheDocument();
+
+      const radioButtonDrinks = screen.queryByTestId("filter-by-drink-btn");
+      expect(radioButtonDrinks).toBeInTheDocument();
+
+      userEvent.click(radioButtonDrinks);
+
+      expect(radioButtonDrinks).toBeChecked();
+      expect(screen.queryByText(/Spicy Arrabiata Penne/i)).not.toBeInTheDocument();
+      expect(screen.queryByText(/Aquamarine/i)).toBeInTheDocument();
+
+      const radioButtonAll = screen.queryByTestId("filter-by-all-btn");
+      expect(radioButtonAll).toBeInTheDocument();
+
+      userEvent.click(radioButtonAll);
+
+      expect(radioButtonAll).toBeChecked();
+      expect(screen.queryByText(/Spicy Arrabiata Penne/i)).toBeInTheDocument();
+      expect(screen.queryByText(/Aquamarine/i)).toBeInTheDocument();
+    });
+  });
 
 });

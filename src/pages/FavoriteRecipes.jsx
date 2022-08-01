@@ -1,34 +1,26 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import Header from '../components/Header';
 import FavoriteRecipeContainer from '../components/FavoriteRecipesContainer';
 import recipesAppContext from '../context/RecipesAppContext';
 import '../css/FavoriteRecipes.css';
 
 function FavoriteRecipes() {
-  const { favorites } = React.useContext(recipesAppContext);
+  const { favorites } = useContext(recipesAppContext);
 
-  const [recipes, setRecipes] = React.useState([]);
-
-  // recupera a lista de receitas favoritas do context
-  React.useEffect(() => {
-    setRecipes(favorites);
-  }, [favorites]);
+  const [recipes, setRecipes] = useState(favorites);
 
   const handleRadio = ({ target: { id } }) => {
-    if (id === 'foods') {
-      const filteredFavorites = favorites.filter((favorite) => favorite.type === 'food');
-      return setRecipes(filteredFavorites);
+    if (id === 'all') {
+      setRecipes(favorites);
+      return;
     }
-    if (id === 'drinks') {
-      const filteredFavorites = favorites.filter((favorite) => favorite.type === 'drink');
-      return setRecipes(filteredFavorites);
-    }
-    return setRecipes(favorites);
+
+    setRecipes(favorites.filter((favorite) => favorite.type === id));
   };
 
   return (
     <div>
-      <Header page="favoriteRecipes" />
+      <Header page="favoriteRecipes" setFilteredRecipe={ () => {} } />
       <div>
         <label htmlFor="all">
           <input
@@ -45,7 +37,7 @@ function FavoriteRecipes() {
           <input
             name="radioFilter"
             type="radio"
-            id="foods"
+            id="food"
             data-testid="filter-by-food-btn"
             onClick={ handleRadio }
           />
@@ -55,7 +47,7 @@ function FavoriteRecipes() {
           <input
             name="radioFilter"
             type="radio"
-            id="drinks"
+            id="drink"
             data-testid="filter-by-drink-btn"
             onClick={ handleRadio }
           />
