@@ -7,7 +7,7 @@ import '../css/DoneRecipes.css';
 function DoneRecipes() {
   const { done } = React.useContext(recipesAppContext);
   console.log('done', done);
-  
+
   const [recipes, setRecipes] = React.useState([]);
 
   React.useEffect(() => {
