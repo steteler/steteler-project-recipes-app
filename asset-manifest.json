@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/steteler-recipes-app/static/css/main.5c376d0a.css",
-    "main.js": "/steteler-recipes-app/static/js/main.6c344bee.js",
+    "main.js": "/steteler-recipes-app/static/js/main.a18d7fda.js",
     "static/media/mealIcon.svg": "/steteler-recipes-app/static/media/mealIcon.40029e7f1422ba5a1bf1c10fa4f59030.svg",
     "static/media/shareIcon.svg": "/steteler-recipes-app/static/media/shareIcon.87def1bd1dff9af9263f046c3b9bd31a.svg",
     "static/media/profileIcon.svg": "/steteler-recipes-app/static/media/profileIcon.44eb3608f431845fe2fc2d2a23d758ae.svg",
@@ -17,10 +17,10 @@
     "static/media/loading.svg": "/steteler-recipes-app/static/media/loading.1d663e26a4389f6d971c7b18fae2f54f.svg",
     "static/media/doneIconProfile.svg": "/steteler-recipes-app/static/media/doneIconProfile.8e76ec95307f8b20c089ebcbd893dd5b.svg",
     "main.5c376d0a.css.map": "/steteler-recipes-app/static/css/main.5c376d0a.css.map",
-    "main.6c344bee.js.map": "/steteler-recipes-app/static/js/main.6c344bee.js.map"
+    "main.a18d7fda.js.map": "/steteler-recipes-app/static/js/main.a18d7fda.js.map"
   },
   "entrypoints": [
     "static/css/main.5c376d0a.css",
-    "static/js/main.6c344bee.js"
+    "static/js/main.a18d7fda.js"
   ]
 }
