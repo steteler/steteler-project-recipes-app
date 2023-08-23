@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/kikuti-project-recipes-app/static/css/main.5c376d0a.css",
-    "main.js": "/kikuti-project-recipes-app/static/js/main.f40fe6cc.js",
-    "static/media/mealIcon.svg": "/kikuti-project-recipes-app/static/media/mealIcon.40029e7f1422ba5a1bf1c10fa4f59030.svg",
-    "static/media/shareIcon.svg": "/kikuti-project-recipes-app/static/media/shareIcon.87def1bd1dff9af9263f046c3b9bd31a.svg",
-    "static/media/profileIcon.svg": "/kikuti-project-recipes-app/static/media/profileIcon.44eb3608f431845fe2fc2d2a23d758ae.svg",
-    "static/media/whiteHeartIcon.svg": "/kikuti-project-recipes-app/static/media/whiteHeartIcon.2b822118952dc5140129c6349fcd0472.svg",
-    "static/media/searchIcon.svg": "/kikuti-project-recipes-app/static/media/searchIcon.7353564d025de989f86f66ecb0202a04.svg",
-    "static/media/blackHeartIcon.svg": "/kikuti-project-recipes-app/static/media/blackHeartIcon.083cb006913d197c95857ebfa2161db7.svg",
-    "static/media/drinkIcon.svg": "/kikuti-project-recipes-app/static/media/drinkIcon.efc0d3c156e5da73e44a826c8d67b142.svg",
-    "static/media/chefIcon.svg": "/kikuti-project-recipes-app/static/media/chefIcon.6d5b4bd3b6d6ed4565783ba1cda468e4.svg",
-    "static/media/loginPasswordIcon.svg": "/kikuti-project-recipes-app/static/media/loginPasswordIcon.d297a3023f2632b29dcf0bf58412ad3f.svg",
-    "static/media/loginEmailIcon.svg": "/kikuti-project-recipes-app/static/media/loginEmailIcon.2eb2bb8bf5a20e5d0e63848ef267549c.svg",
-    "index.html": "/kikuti-project-recipes-app/index.html",
-    "static/media/favoriteIconProfile.svg": "/kikuti-project-recipes-app/static/media/favoriteIconProfile.525d57fa240fc7f9bde41290d74808be.svg",
-    "static/media/loading.svg": "/kikuti-project-recipes-app/static/media/loading.1d663e26a4389f6d971c7b18fae2f54f.svg",
-    "static/media/doneIconProfile.svg": "/kikuti-project-recipes-app/static/media/doneIconProfile.8e76ec95307f8b20c089ebcbd893dd5b.svg",
-    "main.5c376d0a.css.map": "/kikuti-project-recipes-app/static/css/main.5c376d0a.css.map",
-    "main.f40fe6cc.js.map": "/kikuti-project-recipes-app/static/js/main.f40fe6cc.js.map"
+    "main.css": "/steteler-recipes-app/static/css/main.5c376d0a.css",
+    "main.js": "/steteler-recipes-app/static/js/main.da9f2f0b.js",
+    "static/media/mealIcon.svg": "/steteler-recipes-app/static/media/mealIcon.40029e7f1422ba5a1bf1c10fa4f59030.svg",
+    "static/media/shareIcon.svg": "/steteler-recipes-app/static/media/shareIcon.87def1bd1dff9af9263f046c3b9bd31a.svg",
+    "static/media/profileIcon.svg": "/steteler-recipes-app/static/media/profileIcon.44eb3608f431845fe2fc2d2a23d758ae.svg",
+    "static/media/whiteHeartIcon.svg": "/steteler-recipes-app/static/media/whiteHeartIcon.2b822118952dc5140129c6349fcd0472.svg",
+    "static/media/searchIcon.svg": "/steteler-recipes-app/static/media/searchIcon.7353564d025de989f86f66ecb0202a04.svg",
+    "static/media/blackHeartIcon.svg": "/steteler-recipes-app/static/media/blackHeartIcon.083cb006913d197c95857ebfa2161db7.svg",
+    "static/media/drinkIcon.svg": "/steteler-recipes-app/static/media/drinkIcon.efc0d3c156e5da73e44a826c8d67b142.svg",
+    "static/media/chefIcon.svg": "/steteler-recipes-app/static/media/chefIcon.6d5b4bd3b6d6ed4565783ba1cda468e4.svg",
+    "static/media/loginPasswordIcon.svg": "/steteler-recipes-app/static/media/loginPasswordIcon.d297a3023f2632b29dcf0bf58412ad3f.svg",
+    "static/media/loginEmailIcon.svg": "/steteler-recipes-app/static/media/loginEmailIcon.2eb2bb8bf5a20e5d0e63848ef267549c.svg",
+    "index.html": "/steteler-recipes-app/index.html",
+    "static/media/favoriteIconProfile.svg": "/steteler-recipes-app/static/media/favoriteIconProfile.525d57fa240fc7f9bde41290d74808be.svg",
+    "static/media/loading.svg": "/steteler-recipes-app/static/media/loading.1d663e26a4389f6d971c7b18fae2f54f.svg",
+    "static/media/doneIconProfile.svg": "/steteler-recipes-app/static/media/doneIconProfile.8e76ec95307f8b20c089ebcbd893dd5b.svg",
+    "main.5c376d0a.css.map": "/steteler-recipes-app/static/css/main.5c376d0a.css.map",
+    "main.da9f2f0b.js.map": "/steteler-recipes-app/static/js/main.da9f2f0b.js.map"
   },
   "entrypoints": [
     "static/css/main.5c376d0a.css",
-    "static/js/main.f40fe6cc.js"
+    "static/js/main.da9f2f0b.js"
   ]
 }
