@@ -1,7 +1,7 @@
 {
   "name": "recipes-app-test",
   "version": "0.1.0",
-  "homepage": "https://kikutii.github.io/kikuti-project-recipes-app",
+  "homepage": "https://steteler.github.io/steteler-recipes-app",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.5.3",
