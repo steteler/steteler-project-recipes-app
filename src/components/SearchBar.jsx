@@ -108,8 +108,7 @@ export default function SearchBar({ setFilteredRecipe }) {
       return filterByFirstLetter();
     };
     callBack();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [endPoints]);
+  }, [selectedFilters, filterByRadio, endPoints]);
 
   const handleSearch = () => {
     // está passando o valor do state local (selectedFilters) para o state do context (global),
